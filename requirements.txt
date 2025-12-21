@@ -1,2 +1,5 @@
 google-search-results
 pandas
+pymongo[srv]==3.12
+pydantic-settings
+pydantic
