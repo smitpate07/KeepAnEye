@@ -3,3 +3,4 @@ pandas
 pymongo[srv]==3.12
 pydantic-settings
 pydantic
+schedule
