@@ -14,6 +14,7 @@ class SaveToDB:
         try:
             self.config = AppConfig()
             self.db_uri = f"mongodb+srv://{self.config.DATABASE_USER}:{self.config.DATABASE_PASSWORD}@cluster0.25acfan.mongodb.net/?appName=Cluster0"
+
         except Exception as e:
             raise e
     
@@ -31,13 +32,13 @@ class SaveToDB:
         try:
             # Extract relevant data from API results
             product_info = api_results.get('product_results', {})
-            item_spec = api_results.get('item_specifications',{})
+            item_spec = api_results.get('item_specifications', {})
             
             if not product_info:
                 print("✗ No product information found in API results")
                 return None
             
-           # Get price - it's already a float in 'extracted_price'
+            # Get price - it's already a float in 'extracted_price'
             price = product_info.get('extracted_price', 0)
             
             # If extracted_price is not available, try to parse from 'price' string
@@ -48,20 +49,21 @@ class SaveToDB:
                     price = float(price_str.replace('$', '').replace(',', ''))
                 except:
                     price = 0
-             # Get brand - check both locations
+            
+            # Get brand - check both locations
             brand = item_spec.get('brand', product_info.get('brand', 'N/A'))
             
             # Get stock - it's already a string
             stock = product_info.get('stock', 'Unknown')
-
+            
             # Prepare document for MongoDB
             document = {
                 'asin': asin,
                 'title': product_info.get('title', 'N/A'),
                 'extracted_price': price,
                 'stock': stock,
-                'brand':brand,
-                'user_requested_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
+                'brand': brand,
+                'user_requested_time': datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
             }
             
             # Save to MongoDB
