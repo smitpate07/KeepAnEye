@@ -37,8 +37,6 @@ Simply enter a product's ASIN and your email—App will monitor the price 24/7 a
 ## 🎥 Demo
 
 ### **How It Works**
-
-<!-- Add your demo video here -->
 ![Demo Video](demo/demo_video.gif)
 ---
 

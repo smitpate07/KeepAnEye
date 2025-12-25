@@ -22,38 +22,23 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* ======================================================
-   🔒 ABSOLUTE NO-SCROLL — EDGE / STREAMLIT SAFE
-   ====================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-/* 🔑 TOPMOST STREAMLIT ROOT (CRITICAL FIX) */
+/* ===== NO SCROLL (EDGE SAFE) ===== */
+html, body,
 [data-testid="stAppViewContainer"],
 [data-testid="stApp"],
 .stApp {
-    height: calc(100svh - 6px) !important;
-    max-height: calc(100svh - 6px) !important;
+    height: 100svh !important;
     overflow: hidden !important;
+    margin: 0 !important;
 }
 
-/* MAIN WRAPPER */
-.main {
-    height: 100% !important;
-    overflow: hidden !important;
-}
-
-/* CONTENT CONTAINER */
 .main .block-container {
-    height: 100% !important;
-    max-height: 100% !important;
-    padding: 0.35rem 1rem !important;
+    height: 100%;
+    max-height: 100%;
+    padding: 0.5rem 1rem !important;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden !important;
 }
 
 /* ===== BACKGROUND ===== */
@@ -71,106 +56,82 @@ header,
     display: none !important;
 }
 
-/* ======================================================
-   🎉 ANIMATED EMOJIS
-   ====================================================== */
-
+/* ===== ANIMATED EMOJIS ===== */
 .emoji-hero {
     text-align: center;
-    font-size: clamp(2.1rem, 4vw, 3rem);
-    line-height: 1;
-    margin: 0.15rem 0;
-}
-
-.blink {
-    display: inline-block;
-    animation: blink 4s infinite;
-}
-@keyframes blink {
-    0%, 95%, 100% { transform: scaleY(1); }
-    96%, 98% { transform: scaleY(0.1); }
-}
-
-.pulse {
-    display: inline-block;
-    animation: pulse 1.6s infinite;
-}
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.12); }
-    100% { transform: scale(1); }
-}
-
-.float {
-    display: inline-block;
-    animation: float 2.4s ease-in-out infinite;
-}
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-
-/* ======================================================
-   🏷️ TITLE
-   ====================================================== */
-
-.subtitle {
-    text-align: center;
-    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
-    font-weight: 900;
-    color: white;
-    line-height: 1.1;
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
     margin-bottom: 0.3rem;
 }
 
-/* ======================================================
-   🧾 FORM
-   ====================================================== */
+.blink { animation: blink 4s infinite; display: inline-block; }
+@keyframes blink { 96% { transform: scaleY(0.1); } }
 
+.pulse { animation: pulse 1.5s infinite; display: inline-block; }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.float { animation: float 2.4s ease-in-out infinite; display: inline-block; }
+@keyframes float {
+    50% { transform: translateY(-6px); }
+}
+
+/* ===== TITLE ===== */
+.subtitle {
+    text-align: center;
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== FORM ===== */
 [data-testid="stForm"] {
     background: white !important;
-    padding: 0.45rem !important;
-    border-radius: 14px !important;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12) !important;
+    padding: 0.6rem !important;
+    border-radius: 16px !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15) !important;
 }
 
 .stTextInput input {
     border-radius: 10px;
-    padding: 0.45rem;
+    padding: 0.5rem;
 }
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 .stButton > button {
     width: 100%;
     border-radius: 25px;
     background: linear-gradient(135deg, #4facfe, #00f2fe);
     color: white;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-/* MESSAGES */
+/* ===== MESSAGES ===== */
 .success-msg {
     background: #d4edda;
-    padding: 0.4rem;
-    border-left: 4px solid #28a745;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    padding: 0.5rem;
+    border-left: 5px solid #28a745;
+    border-radius: 10px;
+    font-size: 0.9rem;
 }
 
 .error-msg {
     background: #f8d7da;
-    padding: 0.4rem;
-    border-left: 4px solid #dc3545;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    padding: 0.5rem;
+    border-left: 5px solid #dc3545;
+    border-radius: 10px;
+    font-size: 0.9rem;
 }
 
-/* FOOTER */
+/* ===== FOOTER (BIGGER) ===== */
 .footer-text {
     text-align: center;
-    font-size: 0.75rem;
-    padding: 0.25rem 0;
+    font-size: 1rem;
+    padding: 0.6rem 0;
+    font-weight: 600;
 }
 
 </style>
@@ -186,21 +147,17 @@ def validate_asin(asin):
 
 
 def track_product(asin, email):
-    try:
-        db = SaveToDB()
-        tracker = TrackingManager()
+    db = SaveToDB()
+    tracker = TrackingManager()
 
-        api = ApiCall(asin)
-        result = api.call_load()
-        if not result:
-            return False, "Invalid ASIN"
+    api = ApiCall(asin)
+    result = api.call_load()
+    if not result:
+        return False, "Invalid ASIN"
 
-        db.save_product_data(result, asin)
-        tracker.add_tracking(asin, email)
-
-        return True, result
-    except Exception as e:
-        return False, str(e)
+    db.save_product_data(result, asin)
+    tracker.add_tracking(asin, email)
+    return True, result
 
 
 # ================= BACKGROUND CHECKER =================
@@ -246,6 +203,8 @@ def main():
         unsafe_allow_html=True
     )
 
+    status = st.empty()  # message placeholder
+
     with st.form("tracking_form", clear_on_submit=True):
         asin = st.text_input("📦 Amazon ASIN", placeholder="e.g. B0D11HXZNR")
         email = st.text_input("📧 Your Email", placeholder="you@email.com")
@@ -253,24 +212,26 @@ def main():
 
         if submit:
             if not asin or not email:
-                st.markdown("<div class='error-msg'>❌ Fill all fields</div>", unsafe_allow_html=True)
+                status.markdown("<div class='error-msg'>❌ Fill all fields</div>", unsafe_allow_html=True)
             elif not validate_asin(asin):
-                st.markdown("<div class='error-msg'>❌ Invalid ASIN</div>", unsafe_allow_html=True)
+                status.markdown("<div class='error-msg'>❌ Invalid ASIN</div>", unsafe_allow_html=True)
             elif not validate_email(email):
-                st.markdown("<div class='error-msg'>❌ Invalid Email</div>", unsafe_allow_html=True)
+                status.markdown("<div class='error-msg'>❌ Invalid Email</div>", unsafe_allow_html=True)
             else:
+                status.markdown("<div class='success-msg'>⏳ Starting Tracking…</div>", unsafe_allow_html=True)
+
                 ok, _ = track_product(asin.strip(), email.strip())
+
                 if ok:
-                    msg = st.empty() 
-                    st.markdown("<div class='success-msg'>✅ Tracking Started 🎉</div>", unsafe_allow_html=True)
+                    status.markdown("<div class='success-msg'>✅ Tracking Started 🎉</div>", unsafe_allow_html=True)
                     st.balloons()
                     time.sleep(5)
-                    msg.empty()  
+                    status.empty()
                 else:
-                    st.markdown("<div class='error-msg'>❌ Failed to track product</div>", unsafe_allow_html=True)
+                    status.markdown("<div class='error-msg'>❌ Failed to track product</div>", unsafe_allow_html=True)
 
     st.markdown(
-        f"<div class='footer-text'>👁️ <b>KeepAnyEye</b> — Never Miss a Deal 💰 | © {datetime.now().year}</div>",
+        f"<div class='footer-text'>👁️ KeepAnyEye — Never Miss a Deal 💰 | © {datetime.now().year}</div>",
         unsafe_allow_html=True
     )
 
