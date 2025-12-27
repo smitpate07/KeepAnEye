@@ -9,7 +9,7 @@ class NotifyUser:
     """
     Class to handle email notifications for price drops
     """
-    def __init__(self):
+    def __init__(self,email):
         """
         Initialize email notifier with SMTP credentials from config
         """
@@ -19,7 +19,7 @@ class NotifyUser:
             self.smtp_port = self.config.SMTP_PORT
             self.sender_email = self.config.SENDER_EMAIL
             self.sender_password = self.config.SENDER_PASSWORD
-            self.recipient_email = self.config.RECIPIENT_EMAIL
+            self.email = email
         except Exception as e:
             raise e
     
@@ -333,7 +333,7 @@ class NotifyUser:
             message = MIMEMultipart("alternative")
             message["Subject"] = subject
             message["From"] = self.sender_email
-            message["To"] = self.recipient_email
+            message["To"] = self.email
             
             # Attach both plain text and HTML versions
             part1 = MIMEText(text_body, "plain")
@@ -347,7 +347,7 @@ class NotifyUser:
                 server.login(self.sender_email, self.sender_password)
                 server.send_message(message)
             
-            print(f"✓ Price drop alert email sent to {self.recipient_email}")
+            print(f"✓ Price drop alert email sent to {self.email}")
             return True
             
         except Exception as e:
