@@ -153,11 +153,3 @@ keepanyeye/
 - [ ] Wishlist management
 
 ---
-
-## ⭐ Show Your Support
-
-Give a ⭐️ if this project helped you!
-
-<div align="center">
-  <p>Made with ❤️ by developer, for smart shoppers</p>
-</div>
