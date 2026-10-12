@@ -60,11 +60,11 @@ https://github.com/user-attachments/assets/85546516-662d-48ab-8547-fdd6843b1a4a
 
 ### **Tracking a Product**
 
-1. Find the **ASIN** of the Amazon product you want to track
-   - Look in the product URL: `amazon.com/dp/B0D11HXZNR`
-   - Or check the "Product Information" section
+1. Find the **ASIN** of the Amazon product you want to track.
+   - Look in the product URL: `amazon.com/dp/B0D11HXZNR`.
+   - Or check the "Product Information" section.
 
-2. Enter the **ASIN** and your **email** in the web interface
+2. Enter the **ASIN** and your **email** in the web interface.
 
 3. Click **"Start Tracking"**
 
