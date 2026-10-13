@@ -26,10 +26,10 @@ Simply enter a product's ASIN and your email—App will monitor the price 24/7 a
 
 ## ✨ Features
 
-- 🔍 **Automatic Price Monitoring** - Checks prices every 12 hours
-- 📧 **Instant Email Alerts** - Beautiful HTML emails when prices drop
-- 🎨 **Clean Web Interface** - Simple, intuitive Streamlit UI
-- 💾 **MongoDB Storage** - Reliable data persistence
+- 🔍 **Automatic Price Monitoring** - Checks prices every 12 hours.
+- 📧 **Instant Email Alerts** - Beautiful HTML emails when prices drop.
+- 🎨 **Clean Web Interface** - Simple, intuitive Streamlit UI.
+- 💾 **MongoDB Storage** - Reliable data persistence.
 - 🔄 **Background Processing** - Runs continuously without user intervention
 - 📊 **Price History** - Track price changes over time
 ---
