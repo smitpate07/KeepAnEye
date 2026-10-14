@@ -30,8 +30,8 @@ Simply enter a product's ASIN and your email—App will monitor the price 24/7 a
 - 📧 **Instant Email Alerts** - Beautiful HTML emails when prices drop.
 - 🎨 **Clean Web Interface** - Simple, intuitive Streamlit UI.
 - 💾 **MongoDB Storage** - Reliable data persistence.
-- 🔄 **Background Processing** - Runs continuously without user intervention
-- 📊 **Price History** - Track price changes over time
+- 🔄 **Background Processing** - Runs continuously without user intervention.
+- 📊 **Price History** - Track price changes over time.
 ---
 
 ## 🎥 Demo
@@ -131,17 +131,17 @@ keepanyeye/
 
 ## 🐛 Known Issues & Limitations
 
-- **Rate Limits**: SerpAPI has request limits (250 free searches/month)
-- **12-Hour Delay**: Price checks happen every 12 hours (configurable)
-- **Email Delays**: SMTP servers may have sending delays
-- **Amazon Blocks**: Amazon may block frequent automated requests
+- **Rate Limits**: SerpAPI has request limits (250 free searches/month).
+- **12-Hour Delay**: Price checks happen every 12 hours (configurable).
+- **Email Delays**: SMTP servers may have sending delays.
+- **Amazon Blocks**: Amazon may block frequent automated requests.
 ---
 
 ### **Workarounds**
 
-- Use a paid SerpAPI plan for more requests
-- Adjust check frequency in `run_price_checker()` function
-- Use multiple email accounts for higher sending limits
+- Use a paid SerpAPI plan for more requests.
+- Adjust check frequency in `run_price_checker()` function.
+- Use multiple email accounts for higher sending limits.
 
 ---
 
