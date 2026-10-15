@@ -148,8 +148,8 @@ keepanyeye/
 ## 📝 Roadmap
 
 - [ ] Add AWS Services such as AWS Lambda,AWS Event Bridge and other Serivices.
-- [ ] Add support for multiple Amazon regions (UK, DE, JP, etc.)
-- [ ] Support for other e-commerce sites (eBay, Walmart)
-- [ ] Wishlist management
+- [ ] Add support for multiple Amazon regions (UK, DE, JP, etc.).
+- [ ] Support for other e-commerce sites (eBay, Walmart).
+- [ ] Wishlist management.
 
 ---
