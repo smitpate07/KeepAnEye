@@ -66,7 +66,7 @@ https://github.com/user-attachments/assets/85546516-662d-48ab-8547-fdd6843b1a4a
 
 2. Enter the **ASIN** and your **email** in the web interface.
 
-3. Click **"Start Tracking"**
+3. Click **"Start Tracking"**.
 
 4. You'll receive an email notification whenever the price drops!
 
